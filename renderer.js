@@ -3,11 +3,11 @@
  * @Author: changhong.wang
  * @Date: 2021-10-12 13:50:37
  * @LastEditors: changhong.wang
- * @LastEditTime: 2021-10-13 19:06:20
+ * @LastEditTime: 2021-10-18 23:47:05
  */
-import { TIMER_TYPE } from './types';
 const { ipcRenderer } = require('electron');
 const Timer = require('timer.js');
+const { TIMER_TYPE } = require('./types');
 
 function startWork() {
     let workTimer = new Timer({
@@ -27,11 +27,11 @@ function startRest() {
             updateTime(ms, TIMER_TYPE.REST)
         },
         onend: () => {
-            // 提示开始工作
-            notification()
+            // 提示休息结束 开始工作
+            notifiEndRest()
         }
     });
-    workTimer.start(5);
+    restTimer.start(5);
 }
 
 function updateTime(ms, type) {
@@ -56,7 +56,9 @@ async function notification() {
  */
 async function notifiEndRest() {
     let res = await ipcRenderer.invoke('rest-notification');
-    
+    if (res === 'work') {
+        startWork();
+    }
 }
 
 startWork()

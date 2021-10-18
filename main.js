@@ -3,12 +3,12 @@
  * @Author: changhong.wang
  * @Date: 2021-10-12 15:04:29
  * @LastEditors: changhong.wang
- * @LastEditTime: 2021-10-13 19:06:26
+ * @LastEditTime: 2021-10-18 23:46:39
  */
-import { TIMER_TYPE } from './types';
 
 const { app, BrowserWindow, Notification, ipcMain } = require('electron');
 const path = require('path');
+const { TIMER_TYPE } = require('./types');
 
 app.on('ready', () => {
     const win = new BrowserWindow({
@@ -39,6 +39,21 @@ function handleIPC() {
             notification.on('action', () => {
                 resolve('rest');
             })
+            notification.on('close', () => {
+                resolve('work'); 
+            })
+        })
+        return res;
+    });
+
+    ipcMain.handle('rest-notification', async (type) => {
+        let res = await new Promise((resolve, reject) => {
+            let notification = new Notification({
+                title: '休息结束',
+                body: '即将开始工作啦',
+                closeButtonText: '继续工作'
+            })
+            notification.show();
             notification.on('close', () => {
                 resolve('work'); 
             })
