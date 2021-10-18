@@ -3,7 +3,7 @@
  * @Author: changhong.wang
  * @Date: 2021-10-12 17:11:02
  * @LastEditors: changhong.wang
- * @LastEditTime: 2021-10-18 23:44:41
+ * @LastEditTime: 2021-10-18 23:57:36
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -11,10 +11,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css"/>
     <title>番茄时钟</title>
 </head>
 <body>
-    <div id='timer-container'></div>
+    <div class="box">
+        <div class="border">
+            <div class="desc">
+                <span>距离结束还有</span>
+                <div id='timer-container'>9000<span>秒</span></div>
+            </div>
+            
+        </div>
+    </div>
     <script src="./renderer.js"></script>
 </body>
 </html>
