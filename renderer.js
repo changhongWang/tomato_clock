@@ -3,7 +3,7 @@
  * @Author: changhong.wang
  * @Date: 2021-10-12 13:50:37
  * @LastEditors: changhong.wang
- * @LastEditTime: 2021-10-18 23:47:05
+ * @LastEditTime: 2021-10-19 23:59:16
  */
 const { ipcRenderer } = require('electron');
 const Timer = require('timer.js');
@@ -50,6 +50,7 @@ async function notification() {
         startWork();
     }
 }
+
 
 /**
  * 提示休息结束
